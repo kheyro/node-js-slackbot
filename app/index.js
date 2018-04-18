@@ -4,10 +4,9 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const routes = require('../config/routes')
+const routes = require('../config/routes');
 
 const app = express();
-// require('../config/routes')(app);
 app.use('/', routes);
 
 // uncomment after placing your favicon in /public
