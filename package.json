@@ -1,0 +1,19 @@
+{
+  "name": "express-starter",
+  "version": "1.0.0",
+  "description": "Express minimal starter kit",
+  "main": "run-server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.git"
+  },
+  "keywords": [
+    "expressjs",
+    "express"
+  ],
+  "author": "Denis Atkesone",
+  "license": "MIT"
+}
