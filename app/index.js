@@ -6,12 +6,13 @@ const bodyParser = require('body-parser');
 const routes = require('../config/routes');
 
 const app = express();
-app.use('/', routes);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
