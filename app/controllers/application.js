@@ -6,11 +6,11 @@ const msg = {
   mrkdown: true,
 };
 
-function sendMessage(text, attachments) {
+function sendMessage(res, text, attachments) {
   msg.text = text;
   if (attachments) msg.attachments = [attachments];
 
-  return msg;
+  return res.send(msg);
 }
 
 function formatUserInfo(data, command) {
@@ -67,10 +67,10 @@ function getGit(res, user, command) {
         url += '/repos';
         break;
       case 'help':
-        res.send(sendMessage('Available commands: `repos`'));
+        sendMessage(res, 'Available commands: `repos`');
         break;
       default:
-        res.send(sendMessage('Invalid command. Type `/getgit <user> help`'));
+        return sendMessage(res, 'Invalid command. Type `/getgit <user> help`');
     }
   }
 
@@ -78,18 +78,18 @@ function getGit(res, user, command) {
     .then(resp => {
       if (resp.ok) return resp.json();
 
-      res.send('User not found');
+      sendMessage(res, 'User not found');
       throw new Error('User not found');
     })
     .then(data => {
-      res.json(sendMessage('', formatUserInfo(data, command)));
+      sendMessage(res, '', formatUserInfo(data, command));
     })
     .catch(err => console.log(err));
 }
 
 const appController = {
   getIndex: (req, res) => {
-    res.send('Hello world!');
+    res.send('Git Slackbot');
   },
   postIndex: (req, res) => {
     res.set('Content-Type', 'application/json');
@@ -98,7 +98,7 @@ const appController = {
     const command = req.body.text.split(' ')[1];
 
     if (req.body.text === '') {
-      return res.send('Command invalid. Try: /getgit <username> <command>');
+      return sendMessage('Command invalid. Try: /getgit <username> <command>');
     }
 
     return getGit(res, username, command);
