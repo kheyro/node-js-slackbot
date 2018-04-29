@@ -19,3 +19,7 @@ If slack uses `/getgit` as slash command.
 * Retrieve user `/getgit <username>`
 * Retrieve user repositories `/getgit <username> repos`
 * List all available command `/getgit <username help`
+
+## Screenshot
+
+![git slack bot](https://user-images.githubusercontent.com/10345706/39411351-c97a0faa-4c08-11e8-97de-804d67c7ed3a.png)
